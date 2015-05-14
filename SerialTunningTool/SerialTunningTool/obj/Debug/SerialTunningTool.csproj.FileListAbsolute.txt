@@ -1,0 +1,9 @@
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Debug\SerialTunningTool.exe.config
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Debug\SerialTunningTool.exe
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Debug\SerialTunningTool.pdb
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.csprojResolveAssemblyReference.cache
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.Form1.resources
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.Properties.Resources.resources
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.csproj.GenerateResource.Cache
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.exe
+c:\users\yunkei\documents\visual studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Debug\SerialTunningTool.pdb
