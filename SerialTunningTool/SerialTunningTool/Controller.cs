@@ -41,7 +41,19 @@ namespace SerialTunningTool
             R1,
             R2,
             DRIFT_KP,
-            DRIFT_KI
+            DRIFT_KI,
+            SWITCH_LIGHT,
+            HIGHT_KP,
+            HIGHT_KI,
+            HIGHT_KD,
+            X_KP,
+            X_KI,
+            X_KD,
+            Y_KP,
+            Y_KI,
+            Y_KD,
+            MAX_LIFT_VALUE,
+            MIN_LIFT_VALUE
         };
 
 
@@ -179,6 +191,68 @@ namespace SerialTunningTool
         public void Low()
         {
             Communication.SendCmd((int)CMD.LOW, 0);
+        }
+        public void SwitchLight()
+        {
+            Communication.SendCmd((int)CMD.SWITCH_LIGHT, 0);
+        }
+
+        public void HightKp(float value)
+        {
+            Communication.SendCmd((int)CMD.HIGHT_KP, value);
+
+        }
+        public void HightKi(float value)
+        {
+            Communication.SendCmd((int)CMD.HIGHT_KI, value);
+
+        }
+        public void HightKd(float value)
+        {
+            Communication.SendCmd((int)CMD.HIGHT_KD, value);
+
+        }
+
+        public void XKp(float value)
+        {
+            Communication.SendCmd((int)CMD.X_KP, value);
+
+        }
+        public void XKi(float value)
+        {
+            Communication.SendCmd((int)CMD.X_KI, value);
+
+        }
+        public void XKd(float value)
+        {
+            Communication.SendCmd((int)CMD.X_KD, value);
+
+        }
+
+        public void YKp(float value)
+        {
+            Communication.SendCmd((int)CMD.Y_KP, value);
+
+        }
+        public void YKi(float value)
+        {
+            Communication.SendCmd((int)CMD.Y_KI, value);
+
+        }
+        public void YKd(float value)
+        {
+            Communication.SendCmd((int)CMD.Y_KD, value);
+
+        }
+        public void MaxLift(float value)
+        {
+            Communication.SendCmd((int)CMD.MAX_LIFT_VALUE, value);
+
+        }
+        public void MinLift(float value)
+        {
+            Communication.SendCmd((int)CMD.MIN_LIFT_VALUE, value);
+
         }
 
     }

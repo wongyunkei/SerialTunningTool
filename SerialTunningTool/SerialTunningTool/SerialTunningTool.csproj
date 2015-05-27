@@ -35,8 +35,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mitov.BasicLab, Version=7.5.1.0, Culture=neutral, PublicKeyToken=54b8a1f38c94221a" />
-    <Reference Include="Mitov.PlotLabBasic, Version=7.5.1.0, Culture=neutral, PublicKeyToken=1bb0b8a97236ac2e, processorArchitecture=MSIL" />
+    <Reference Include="Mitov.BasicLab, Version=7.6.0.0, Culture=neutral, PublicKeyToken=54b8a1f38c94221a, processorArchitecture=MSIL" />
+    <Reference Include="Mitov.PlotLabBasic, Version=7.6.0.0, Culture=neutral, PublicKeyToken=1bb0b8a97236ac2e, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

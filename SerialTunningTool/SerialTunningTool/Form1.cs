@@ -22,11 +22,12 @@ namespace SerialTunningTool
         private Controller controller = null;
         private ConsoleDisplay consoleDisplay = null;
         private Timer watchDogTimer = null;
-        private float[] Kp = { 0.0f, 0.0f, 0.0f };//{800.0f, 800.0f, 600.0f};
-        private float[] Ki = {0.0f, 0.0f, 0.0f};
-        private float[] Kd = { 0.0f, 0.0f, 0.0f };//{0.85f,0.85f,0.1f};
+        private float[] Kp = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };//{800.0f, 800.0f, 600.0f};
+        private float[] Ki = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+        private float[] Kd = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };//{0.85f,0.85f,0.1f};
         private int rpy = 0;
         private float RPM = 0;
+        private float MaxLift = 5800;
         private float initRPM = 3500;
         private float MotorKp = 0.0f;
         private float MotorKd = 0.0f;
@@ -39,45 +40,60 @@ namespace SerialTunningTool
 
         void SendAll()
         {
-            controller.RollKp(Kp[0]);
-            System.Threading.Thread.Sleep(20);
-            controller.PitchKp(Kp[1]);
-            System.Threading.Thread.Sleep(20);
-            controller.YawKp(Kp[2]);
-            System.Threading.Thread.Sleep(20);
-            controller.RollKi(Ki[0]);
-            System.Threading.Thread.Sleep(20);
-            controller.PitchKi(Ki[1]);
-            System.Threading.Thread.Sleep(20);
-            controller.YawKi(Ki[2]);
-            System.Threading.Thread.Sleep(20);
-            controller.RollKd(Kd[0]);
-            System.Threading.Thread.Sleep(20);
-            controller.PitchKd(Kd[1]);
-            System.Threading.Thread.Sleep(20);
-            controller.YawKd(Kd[2]);
-            System.Threading.Thread.Sleep(20);
-            controller.YawKd(Kd[2]);
-            System.Threading.Thread.Sleep(20);
+            //controller.RollKp(Kp[0]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.PitchKp(Kp[1]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YawKp(Kp[2]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.HightKp(Kp[3]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.XKp(Kp[4]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YKp(Kp[5]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.RollKi(Ki[0]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.PitchKi(Ki[1]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YawKi(Ki[2]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.HightKi(Ki[3]);
+            //controller.XKi(Ki[4]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YKi(Ki[5]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.RollKd(Kd[0]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.PitchKd(Kd[1]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YawKd(Kd[2]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.HightKd(Kd[3]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.XKd(Kd[4]);
+            //System.Threading.Thread.Sleep(20);
+            //controller.YKd(Kd[5]);
+            //System.Threading.Thread.Sleep(20);
             controller.RollOffset(offset[0]);
             System.Threading.Thread.Sleep(20);
             controller.PitchOffset(offset[1]);
             System.Threading.Thread.Sleep(20);
             controller.YawOffset(offset[2]);
             System.Threading.Thread.Sleep(20);
-            controller.KalmanQ(kalmanQ);
-            System.Threading.Thread.Sleep(20);
-            controller.KalmanQ(kalmanR1);
-            System.Threading.Thread.Sleep(20);
-            controller.KalmanQ(kalmanR2);
-            System.Threading.Thread.Sleep(20);
+            //controller.KalmanQ(kalmanQ);
+            //System.Threading.Thread.Sleep(20);
+            //controller.KalmanR1(kalmanR1);
+            //System.Threading.Thread.Sleep(20);
+            //controller.KalmanR2(kalmanR2);
+            //System.Threading.Thread.Sleep(20);
         }
 
         void PrintData() {
 
-            textBoxLocalDisplay.Text = Kp[0].ToString() + "," + Kp[1].ToString() + "," + Kp[2].ToString() + "\r\n" +
-                                    Ki[0].ToString() + "," + Ki[1].ToString() + "," + Ki[2].ToString() + "\r\n" +
-                                    Kd[0].ToString() + "," + Kd[1].ToString() + "," + Kd[2].ToString() + "\r\n" +
+            textBoxLocalDisplay.Text = Kp[0].ToString() + "," + Kp[1].ToString() + "," + Kp[2].ToString() + "," + Kp[3].ToString() + "," + Kp[4].ToString() + "," + Kp[5].ToString() + "\r\n" +
+                                    Ki[0].ToString() + "," + Ki[1].ToString() + "," + Ki[2].ToString() + "," + Ki[3].ToString() + "," + Ki[4].ToString() + "," + Ki[5].ToString() + "\r\n" +
+                                    Kd[0].ToString() + "," + Kd[1].ToString() + "," + Kd[2].ToString() + "," + Kd[3].ToString() + "," + Kd[4].ToString() + "," + Kd[5].ToString() + "\r\n" +
                                     offset[0].ToString() + "," + offset[1].ToString() + "," + offset[2].ToString() + "\r\n" +
                                     kalmanQ.ToString() + "\r\n" +
                                     kalmanR1.ToString() + "," + kalmanR2.ToString();
@@ -94,33 +110,34 @@ namespace SerialTunningTool
             printTimer.Interval = 1000;
             printTimer.Tick += printTimer_Tick;
             printTimer.Start();
+            
             try
             {
                 StreamReader file = new StreamReader("parameter.txt");
                 String s = file.ReadLine();
                 String[] str = s.Split(',');
-                for(int i = 0; i < 3; i++){
+                for(int i = 0; i < 6; i++){
                     Kp[i] = float.Parse(str[i]);
                 }
-                for (int i = 3; i < 6; i++)
+                for (int i = 6; i < 12; i++)
                 {
-                    Ki[i-3] = float.Parse(str[i]);
+                    Ki[i-6] = float.Parse(str[i]);
                 }
-                for (int i = 6; i < 9; i++)
+                for (int i = 12; i < 18; i++)
                 {
-                    Kd[i-6] = float.Parse(str[i]);
+                    Kd[i-12] = float.Parse(str[i]);
                 }
                 //MotorKp = float.Parse(str[9]);
                 //MotorKd = float.Parse(str[10]);
                 //kalmanQ = float.Parse(str[11]);
                 //kalmanR1 = float.Parse(str[12]);
                 //kalmanR2 = float.Parse(str[13]);
-                offset[0] = float.Parse(str[9]);
-                offset[1] = float.Parse(str[10]);
-                offset[2] = float.Parse(str[11]);
-                kalmanQ = float.Parse(str[12]);
-                kalmanR1 = float.Parse(str[13]);
-                kalmanR2 = float.Parse(str[14]);
+                offset[0] = float.Parse(str[18]);
+                offset[1] = float.Parse(str[19]);
+                offset[2] = float.Parse(str[20]);
+                kalmanQ = float.Parse(str[21]);
+                kalmanR1 = float.Parse(str[22]);
+                kalmanR2 = float.Parse(str[23]);
                 file.Close();
             }
             catch (Exception err)
@@ -140,15 +157,15 @@ namespace SerialTunningTool
             {
                 StreamWriter file = new StreamWriter("parameter.txt");
                 String s = "";
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     s += Kp[i].ToString() + ",";
                 }
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     s += Ki[i].ToString() + ",";
                 }
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     s += Kd[i].ToString() + ",";
                 }
@@ -193,9 +210,9 @@ namespace SerialTunningTool
                 consoleDisplay = new ConsoleDisplay(textBoxDisplay, adapter[4]);
                 communication = new Communication(com);
                 watchDogTimer = new Timer();
-                watchDogTimer.Interval = 200;
+                watchDogTimer.Interval = 400;
                 watchDogTimer.Tick += watchDogTimer_Tick;
-                //watchDogTimer.Start();
+                watchDogTimer.Start();
                 //SendAll();
 
                 PrintData();
@@ -263,9 +280,10 @@ namespace SerialTunningTool
         {
             //controller.Reset();
             //System.Threading.Thread.Sleep(20);
-            //SendAll();
-            //System.Threading.Thread.Sleep(20);
-            controller.MotorSetInitPower(initRPM);
+            SendAll();
+            System.Threading.Thread.Sleep(20);
+            //controller.MotorSetInitPower(RPM);
+            controller.MaxLift(MaxLift);
             System.Threading.Thread.Sleep(20);
             controller.MotorStart();
         }
@@ -310,6 +328,15 @@ namespace SerialTunningTool
                     case 2:
                         controller.YawKp(Kp[rpy]);
                         break;
+                    case 3:
+                        controller.HightKp(Kp[rpy]);
+                        break;
+                    case 4:
+                        controller.XKp(Kp[rpy]);
+                        break;
+                    case 5:
+                        controller.YKp(Kp[rpy]);
+                        break;
                 }
             }
         }
@@ -333,6 +360,15 @@ namespace SerialTunningTool
                     break;
                 case 2:
                     controller.YawKp(Kp[rpy]);
+                    break;
+                case 3:
+                    controller.HightKp(Kp[rpy]);
+                    break;
+                case 4:
+                    controller.XKp(Kp[rpy]);
+                    break;
+                case 5:
+                    controller.YKp(Kp[rpy]);
                     break;
             }
         }
@@ -361,6 +397,15 @@ namespace SerialTunningTool
                     case 2:
                         controller.YawKd(Kd[rpy]);
                         break;
+                    case 3:
+                        controller.HightKd(Kd[rpy]);
+                        break;
+                    case 4:
+                        controller.XKd(Kd[rpy]);
+                        break;
+                    case 5:
+                        controller.YKd(Kd[rpy]);
+                        break;
                 }
             }
         }
@@ -385,6 +430,15 @@ namespace SerialTunningTool
                         break;
                     case 2:
                         controller.YawKd(Kd[rpy]);
+                        break;
+                    case 3:
+                        controller.HightKd(Kd[rpy]);
+                        break;
+                    case 4:
+                        controller.XKd(Kd[rpy]);
+                        break;
+                    case 5:
+                        controller.YKd(Kd[rpy]);
                         break;
                 }
             }
@@ -457,6 +511,15 @@ namespace SerialTunningTool
                 case 2:
                     controller.YawKi(Ki[rpy]);
                     break;
+                case 3:
+                    controller.HightKi(Ki[rpy]);
+                    break;
+                case 4:
+                    controller.XKi(Ki[rpy]);
+                    break;
+                case 5:
+                    controller.YKi(Ki[rpy]);
+                    break;
             }
          }
 
@@ -479,6 +542,15 @@ namespace SerialTunningTool
                     break;
                 case 2:
                     controller.YawKi(Ki[rpy]);
+                    break;
+                case 3:
+                    controller.HightKi(Ki[rpy]);
+                    break;
+                case 4:
+                    controller.XKi(Ki[rpy]);
+                    break;
+                case 5:
+                    controller.YKi(Ki[rpy]);
                     break;
             }
         }
@@ -718,6 +790,50 @@ namespace SerialTunningTool
         private void buttonSendAll_Click(object sender, EventArgs e)
         {
             SendAll();
+        }
+
+        private void buttonLightSW_Click(object sender, EventArgs e)
+        {
+            controller.SwitchLight();
+        }
+
+        private void radioButtonHight_CheckedChanged(object sender, EventArgs e)
+        {
+            rpy = 3;
+        }
+
+        private void radioButtonX_CheckedChanged(object sender, EventArgs e)
+        {
+            rpy = 4;
+        }
+
+        private void radioButtonY_CheckedChanged(object sender, EventArgs e)
+        {
+            rpy = 5;
+        }
+
+        private void buttonMaxLiftUp_Click(object sender, EventArgs e)
+        {
+            float value = 0;
+            if (float.TryParse(textBoxInput.Text, out value))
+            {
+                MaxLift += value;
+                controller.MaxLift(MaxLift);
+            }  
+        }
+
+        private void buttonMaxLiftDown_Click(object sender, EventArgs e)
+        {
+            float value = 0;
+            if (float.TryParse(textBoxInput.Text, out value))
+            {
+                MaxLift -= value;
+                if (MaxLift < 0.0f)
+                {
+                    MaxLift = 0.0f;
+                }
+                controller.MaxLift(MaxLift);
+            }
         }
     }
 }
