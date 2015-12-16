@@ -18,6 +18,7 @@ namespace SerialTunningTool
         private DataRecevier dataRecevier = null;
         private DataAdapter[] adapter = null;
         private PlotGraph plotGraph = null;
+        private View3D view3D = null;
         private Communication communication = null;
         private Controller controller = null;
         private ConsoleDisplay consoleDisplay = null;
@@ -199,20 +200,23 @@ namespace SerialTunningTool
                 com.Open();
                 com.DiscardInBuffer();
                 com.DiscardOutBuffer();
-                adapter = new DataAdapter[5];
+                adapter = new DataAdapter[10];
                 for (int i = 0; i < adapter.Length; i++ )
                 {
                     adapter[i] = new DataAdapter();
                 }
+                DataAdapter[] adapter3D = new DataAdapter[3] { adapter[6], adapter[7], adapter[8] };
                 dataRecevier = new DataRecevier(com, adapter);
-                plotGraph = new PlotGraph(Scope, adapter, textBoxCurvesValue);
+                plotGraph = new PlotGraph(Scope, adapter, 3, textBoxCurvesValue);
                 controller = new Controller();
                 consoleDisplay = new ConsoleDisplay(textBoxDisplay, adapter[4]);
                 communication = new Communication(com);
+                view3D = new View3D(adapter3D);
+                view3D.Show();
                 watchDogTimer = new Timer();
                 watchDogTimer.Interval = 400;
                 watchDogTimer.Tick += watchDogTimer_Tick;
-                watchDogTimer.Start();
+                //watchDogTimer.Start();
                 //SendAll();
 
                 PrintData();

@@ -41,62 +41,22 @@ namespace SerialTunningTool
             catch { }
         }
 
-        unsafe static void floatToBytes(float f, byte[] bytes)
-        {
-            uint value = *((uint*)&f);
-            bytes[3] = (byte)((value & 0xff000000) >> 24);
-            bytes[2] = (byte)((value & 0x00ff0000) >> 16);
-            bytes[1] = (byte)((value & 0x0000ff00) >> 8);
-            bytes[0] = (byte)((value & 0x000000ff) >> 0);
-        }
+
 
         public static void SendCmd(byte cmd, float data)
         {
             try
             {
-                byte[] bytes = new byte[9];
-                byte[] b = new byte[4];
-                floatToBytes(data, b);
-                bytes[0] = 0x24;
-                bytes[1] = (byte)(cmd + 1);
-                bytes[2] = (byte)(b[0] + 1);
-                bytes[3] = (byte)(b[1] + 1);
-                bytes[4] = (byte)(b[2] + 1);
-                bytes[5] = (byte)(b[3] + 1);
-                UInt16 checkSum = cmd;
-                for (int i = 0; i < 4; i++)
-                {
-                    checkSum += b[i];
-                }
-                bytes[6] = (byte)(((checkSum & 0xff00) >> 8) + 1);
-                bytes[7] = (byte)((checkSum & 0x00ff) + 1);
-                bytes[8] = (byte)'\0';
+                byte[] bytes = new byte[4];
+                int halfInt = MathTools.FloatToHalfInt(data);
+	            bytes[0] = 0x24;
+                bytes[1] = (byte)(cmd + 14);
+                bytes[2] = (byte)(((halfInt & 0xff00) >> 8) + 1);
+                bytes[3] = (byte)((halfInt & 0x00ff) + 1);
 
-                Com.Write(bytes, 0, 8);
-                //for (int i = 0; i < 8; i++ )
-                //{
-                //    bytesBuffer[bufferCount, i] = bytes[i];
-                //} 
-                //bufferCount++;
+                Com.Write(bytes, 0, 4);
             }
             catch { }
         }
-
-        //public static void SendCmd(int cmd, int data)
-        //{
-        //    if (cmd >= 0 && cmd <= 31 && data <= 1023 && data >= -1024)
-        //    {
-        //        data += 1024;
-        //        UInt16 raw_data = (UInt16)((cmd << 11) + data);
-        //        byte[] b = { (byte)'$', (byte)((raw_data & 0xff00) >> 8), (byte)(raw_data & 0x00ff), (byte)'\n' };
-
-        //        try
-        //        {
-        //            Com.Write(b, 0, 4);
-
-        //        }
-        //        catch { }
-        //    }
-        //}
     }
 }

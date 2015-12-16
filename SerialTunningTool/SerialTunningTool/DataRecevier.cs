@@ -20,67 +20,37 @@ namespace SerialTunningTool
             Adapter = adapter;
         }
 
-        unsafe float BytesTofloat(byte[] bytes)
-        {
-            uint value = ((uint)bytes[3] << 24) | ((uint)bytes[2] << 16) | ((uint)bytes[1] << 8) | ((uint)bytes[0] << 0);
-            return *((float*)&value);
-        }
+
 
         public void DataRecevier_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             try
             {
                 strBuffer += Com.ReadExisting();
-                if (strBuffer.Length >= 8)
+                if (strBuffer.Length >= 4)
                 {
                     if (strBuffer.Contains("$"))
                     {
                         char[] ch = strBuffer.Substring(strBuffer.IndexOf('$') + 1).ToCharArray();
-                        byte[] Bytes = new byte[7];
-                        for (int i = 0; i < 7; i++)
+                        byte[] Bytes = new byte[3];
+                        for (int i = 0; i < 3; i++)  
                         {
                             Bytes[i] = (byte)(Convert.ToByte(ch[i]) - 1);
                         }
-                        UInt16 checkSum = 0;
-                        for (int j = 0; j < 5; j++)
-                        {
-                            checkSum += (UInt16)Bytes[j];
-                        }
-                        if (checkSum == (UInt16)((((UInt16)Bytes[5] << 8) | (UInt16)Bytes[6])))
-                        {
-                            int Cmd = Bytes[0];
-                            byte[] b = { Bytes[1], Bytes[2], Bytes[3], Bytes[4] };
-                            float Data = BytesTofloat(b);
-                            Adapter[Cmd].sendData(Data);
-                        }
+
+                        int halfInt = (int)(Bytes[1] << 8) | (int)Bytes[2];
+                       
+                        int Cmd = Bytes[0] - 13;
+                        float Data = MathTools.HalfIntToFloat(halfInt);
+                        Adapter[Cmd].sendData(Data);
                         strBuffer = "";
+                        if(Cmd < 3){
+                            Adapter[Cmd+6].sendData(Data);
+                        }
                     }
                 }
             }
             catch { }
-
-
-            //try
-            //{
-
-            //    String str = Com.ReadLine();
-            //    if (!String.IsNullOrEmpty(str))
-            //    {
-            //        if (str.Contains('$'))
-            //        {
-            //            String[] s = str.Split(',');
-            //            for (int i = 0; i < s.Length - 1; i++)
-            //            {
-            //                Adapter[i].sendData(Double.Parse(s[i + 1]));
-            //            }
-            //        }
-            //        else
-            //        {
-            //            Adapter[Adapter.Length - 1].sendData(str);
-            //        }
-            //    }
-            //}
-            //catch { }
         }
     }
 

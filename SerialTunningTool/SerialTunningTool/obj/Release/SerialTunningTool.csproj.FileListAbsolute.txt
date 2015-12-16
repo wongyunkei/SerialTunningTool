@@ -16,3 +16,23 @@ C:\Users\wongy\Documents\GitHub\SerialTunningTool\SerialTunningTool\SerialTunnin
 C:\Users\wongy\Documents\GitHub\SerialTunningTool\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.csproj.GenerateResource.Cache
 C:\Users\wongy\Documents\GitHub\SerialTunningTool\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.exe
 C:\Users\wongy\Documents\GitHub\SerialTunningTool\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.pdb
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.exe.config
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.exe
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.pdb
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.csprojResolveAssemblyReference.cache
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.Form1.resources
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.Properties.Resources.resources
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.csproj.GenerateResource.Cache
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.exe
+C:\Users\wongy\Documents\Visual Studio 2012\Projects\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.pdb
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.csprojResolveAssemblyReference.cache
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.Form1.resources
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.Properties.Resources.resources
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.csproj.GenerateResource.Cache
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.exe
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.pdb
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.exe.config
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.exe
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\bin\Release\SerialTunningTool.pdb
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\bin\Release\csgl.dll
+D:\Workspaces\C# Workspace\SerialTunningTool\SerialTunningTool\obj\Release\SerialTunningTool.View3D.resources
